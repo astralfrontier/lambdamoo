@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+
+require 'readline'
+require 'lambdamoo'
+
+parser = LambdaMoo::Parser.new
+runtime = LambdaMoo::Runtime.new
+
+while buf = Readline.readline(';', true)
+  e = parser.parse(buf, rule: :expr)
+  begin
+    value = e.evaluate(runtime)
+    puts "=> #{value.to_s}"
+  rescue
+    puts $!.message
+    puts $!.backtrace
+  end
+end

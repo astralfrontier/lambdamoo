@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+
+require 'readline'
+require 'lambdamoo'
+require 'yaml'
+
+parser = LambdaMoo::Parser.new
+runtime = LambdaMoo::Runtime.new
+
+code = []
+puts "Enter your program:"
+while buf = Readline.readline('', true)
+  break if buf == "."
+  code << buf
+end
+
+program = parser.parse(code.join("\n"))
+puts program.to_yaml
