@@ -209,7 +209,7 @@ module LambdaMoo
       rule symbol % :right
     end
 
-    rule :t_object => /#[0-9]+/
+    rule :t_object => /#-?[0-9]+/
 
     rule :t_integer => /[0-9]+/
 

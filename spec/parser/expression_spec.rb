@@ -17,6 +17,13 @@ describe LambdaMoo::Parser do
       expect(e.to_i).to eq 893
     end
 
+    it "should parse an OBJ with a negative value" do
+      e = parser.parse("#-1", rule: :expr)
+      expect(e).to be_a LambdaMoo::ObjectNumber
+      expect(e.to_s).to eq "#-1"
+      expect(e.to_i).to eq -1
+    end
+
     it "should parse a STR expression" do
       e = parser.parse("\"foo\"", rule: :expr)
       expect(e).to be_a LambdaMoo::String
