@@ -117,7 +117,7 @@ module LambdaMoo
         LambdaMoo::SubtractExpression.new(LambdaMoo::Integer.new(0), a)
       } % :left ^ 1
       r['!', :expr].as                            { |_, a| LambdaMoo::UnaryExpression.new(a) }
-      r['$'].as                                   { |_| :end_of_list } # TODO
+      r['$'].as                                   { |_| LambdaMoo::EndOfListExpression.new }
       r['(', :expr, ')'].as                       { |_, a, _| a }
       r['{', :arglist, '}'].as                    { |_, a, _| LambdaMoo::List.new(a || []) }
       r[:expr, '?', :expr, '|', :expr].as         { |a, _, b, _, c| LambdaMoo::TernaryExpression.new(a, b, c) }
